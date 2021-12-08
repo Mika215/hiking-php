@@ -126,7 +126,7 @@ ul {
   top: 1rem;
   right: 1rem;
   cursor: pointer;
-  color: #212121;
+  color: #161111;
   font-size: 3em;
   transition: color 0.2s ease;
 }
@@ -148,7 +148,7 @@ ul {
 .header__mobile-links {
   text-transform: uppercase;
   font-weight: 600;
-  color: #212121;
+  color: #161111;
   transition: color 0.2s ease;
 }
 
@@ -237,7 +237,7 @@ body {
 
 .hike__search input {
   padding: 10px;
-  color: #212121;
+  color: #161111;
 }
 
 .hike__controls {
@@ -258,7 +258,7 @@ body {
 
 .hike__controls-btn {
   display: inline-block;
-  background: #212121;
+  background: #161111;
   color: #fff;
   border: none;
   padding: 10px 20px;
