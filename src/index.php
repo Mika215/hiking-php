@@ -1,5 +1,18 @@
 <?php
-echo "hello world!";
+  require_once('php/dbconnection.php');
+
+  try {
+      $qsel_hikes = $db->prepare("SELECT hikeName,dificulty,distance,TIME_FORMAT(duration,'%Hh %i'),elevationGain,DATE(creatDate),DATE(modifDate),userNickname FROM hikes");
+      $qsel_hikes->execute();
+      $hikes = $qsel_hikes->fetchall(PDO::FETCH_ASSOC);
+      //echo '<pre>';
+      //var_dump($hikes);
+      //echo '</pre>';
+  } catch (exception $e) {
+    echo $e->getmessage();
+    exit;
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +21,7 @@ echo "hello world!";
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style/index.css">
+    <link rel="stylesheet" href="/style/index.css">
     <link
       href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
       rel="stylesheet"
@@ -78,47 +91,38 @@ echo "hello world!";
         </ul>
       </nav>
     </header>
+
     <main class="hike__container">
       <section class="hike__search">
         <div class="hike__search-bar">
-          <input
-            class="hike__search-input"
-            type="text"
-            name="search-hike-input"
-            placeholder="Search trails"
-            id="seacrh-input"
-          />
+          <input class="hike__search-input" type="text" name="search-hike-input" placeholder="Search trails" id="seacrh-input"/>
           <button class="hike__search-btn btn" type="submit">Search</button>
         </div>
       </section>
       <section class="tmpl__container">
-        <template id="tmpl-hike">
-          <li class="tmpl__hike-list">
-            <div class="tmpl__hike-detailes">
-              <h2 class="hike__name"></h2>
-              <li class="hike__distance"><i class="distance">Distance</i></li>
-              <li class="hike__elivation">
-                <i class="elivation">Elivation_Gain</i>
-              </li>
-              <li class="hike__duraion"><i class="duration">Duration</i></li>
-              <li class="hike__dificulty">
-                <i class="difficulty">Difficulty</i>
-              </li>
-            </div>
-            <div class="time__stamp">
-              <p class="time__stamp-added">Added :</p>
-              <p class="time__stamp-updated">Updated:</p>
-            </div>
-          </li>
-        </template>
-      </section>
-      <section class="hike__controls">
+
+      <?php foreach ($hikes as $hike):?>
+        <h2><?php echo $hike['hikeName'] ?></h2>
+        <div><?php echo $hike['dificulty'] ?></div>
+        <div><?php echo $hike['distance'] ?></div>
+        <div><?php echo $hike["TIME_FORMAT(duration,'%Hh %i')"] ?></div>
+        <div><?php echo $hike['elevationGain'] ?></div>
+        <div><?php echo "Created at ".$hike['DATE(creatDate)'] ?></div>
+        <div><?php echo "Updated at ".$hike['DATE(modifDate)'] ?></div>
+        <div><?php echo "By ".$hike['userNickname'] ?></div>
+        <section class="hike__controls">
         <!--!these buttons will have hike__controls-btn class in common and separate class each in thier respective names-->
         <button class="hike__controls-btn btn add" type="button">Add</button>
         <button class="hike__controls-btn btn modify" type="button">Modify</button>
         <button class="hike__controls-btn btn delete" type="button">Delete</button>
       </section>
+        
+      <?php endforeach ?>
+        
+      </section>
+      
     </main>
+
     <footer class="footer">
       <section class="footer__container">
         <ul>
