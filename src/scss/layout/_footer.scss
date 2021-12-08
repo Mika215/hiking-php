@@ -1,0 +1,55 @@
+.footer {
+  width: 100%;
+  height: 200px;
+  background-color: $grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
+  &__container {
+    width: 450px;
+    //height: 400px;
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  &-link {
+    color: $white;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    &:hover {
+      color: $red;
+    }
+  }
+  &__social {
+    width: 90%;
+    @media (max-width: $tablet) {
+      max-width: 70%;
+    }
+    display: flex;
+    justify-content: space-between;
+    &-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: $grey;
+      color: $white;
+      transition: color 0.2s ease;
+      &:hover {
+        color: $blue;
+      }
+      & i {
+        opacity: 1;
+        transition: opacity 0.2s ease;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
