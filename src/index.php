@@ -16,6 +16,7 @@
 ?>
 
 <?php
+  function action(){echo 'Action!!';}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,18 +95,7 @@
           <button class="hike__search-btn" id="searchBtn" type="submit">Search</button>
         </div>
       </section>
-
-      <section class="hike__tmpl">
-          <!-- **<?php
-
-          echo "place holder foreach(hike as hikes ) will be used here to list all the hikes ! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod fugit illum facere aliquid asperiores assumenda cumque enim repellendus unde officia, labore, ipsum, illo libero quos? Obcaecati consectetur veritatis velit nam quam amet repellendus corporis similique recusandae dolore accusamus quibusdam, odio eveniet totam assumenda consequuntur optio accusantium a! Non, numquam inventore.";
-          
-        ?> -->
-        <?php
-        echo '<pre>';
-        var_dump($hikes[0]);
-        echo '</pre>';
-         ?>
+      
       <?php foreach ($hikes as $hike):?>
 
         <h3><?php echo $hike['hikeName'] ?></h3>
@@ -139,12 +129,12 @@
           
         </div>
 
-        <section class="hike__controls">
+        <form action = "/php/addhike.php" method="post" class="hike__controls">
           <!--!these buttons will have hike__controls-btn class in common and separate class each in thier respective names-->
-          <button class="hike__controls-btn btn add" type="button">Add</button>
+          <button class="hike__controls-btn btn add" type="submit">Add</button>
           <button class="hike__controls-btn btn modify" type="button">Modify</button>
           <button class="hike__controls-btn btn delete" type="button">Delete</button>
-        </section>
+        </form>
         
       <?php endforeach ?>
 
